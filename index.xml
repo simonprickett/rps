@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<page nocache="false" title="Rock Paper Scissors!" output-encoding="UTF-8" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.netbiscuits.com/schema/netbiscuits-tactile.xsd"> 
+    <external file="rps.js" type="script"/>
+    <external file="rps.css" type="css"/>
+    <layout id="root" class="root" width="parent.width" height="parent.height" top="0" left="0">
+        <layout id="border" class="border" height="Math.round(parent.height*.94)" width="Math.round(parent.width*.94)" top="Math.round(parent.height*.03)" left="Math.round(parent.width*.03)">
+            <layout id="header" class="header" width="parent.width" height="15%">
+                <view id="headerview" width="parent.width" height="parent.height" top="0" left="0">
+                    <PLAINHTML><h1>Rock Paper Scissors!</h1></PLAINHTML>
+                </view>
+            </layout>
+            <layout id="content" class="content" width="100%" top="Math.round(parent.height*.15)" left="0" height="75%">
+                <layout id="start" class="start" width="100%" height="100%" top="0" left="0">
+                    <view id="startbutton" width="100%" height="50%" top="0" left="0" ontap="#rps.startGame()">
+                        <PLAINHTML>Tap to get started!</PLAINHTML>
+                    </view>
+                    <view id="instructionsbutton" width="100%" height="50%" ontap="#rps.showInstructions()">
+                        <PLAINHTML>Tap for instructions</PLAINHTML>
+                    </view> 
+                </layout>
+                <layout id="instructions" class="instructions" width="100%" height="100%" top="0" left="0" display="none">
+                    <view width="100%" height="80%" top="0" left="0">
+                        <PLAINHTML>
+                            <br/>
+                            <p>The rules are very simple:</p>
+                            <p>
+                                <ul>
+                                    <li>Rock beats Scissors</li>
+                                    <li>Scissors beats Paper</li>
+                                    <li>Paper beats Rock</li>
+                                </ul>
+                            </p>
+                        </PLAINHTML>
+                    </view>
+                    <view id="dismissinstructions" class="movebutton" width="80%" height="15%" top="Math.round(parent.height*.8)" left="Math.round(parent.width*.1)" position="absolute" ontap="#rps.startGame()">
+                        <PLAINHTML>Play now!</PLAINHTML>
+                    </view>
+                </layout>
+                <layout id="gameplay" width="100%" height="100%" top="0" left="0" display="none">
+                    <layout id="gamefield" width="100%" height="80%">
+                        <view id="gameviewyourturn" width="100%" height="100%" zindex="0">
+                            <PICTURE width="100%" height="100%" loadingmask="imgloadingmask">
+                                <source src="img/startscreen.png" orientation="portrait"/>
+                                <source src="img/startscreen.png" orientation="landscape"/>
+                            </PICTURE>
+                        </view>
+                        <view id="gameviewopponentrock" width="100%" height="100%" top="0" left="0" display="none" ontap="#rps.getResult()">
+                            <PICTURE width="100%" height="100%" loadingmask="imgloadingmask">
+                                <source src="img/rock.png" orientation="portrait"/>
+                                <source src="img/rock.png" orientation="landscape"/>
+                            </PICTURE>
+                        </view>
+                        <view id="gameviewopponentpaper" width="100%" height="100%" top="0" left="0" display="none" ontap="#rps.getResult()">
+                            <PICTURE width="100%" height="100%" loadingmask="imgloadingmask">
+                                <source src="img/paper.png" orientation="portrait"/>
+                                <source src="img/paper.png" orientation="landscape"/>
+                            </PICTURE>
+                        </view>
+                        <view id="gameviewopponentscissors" width="100%" height="100%" top="0" left="0" display="none" ontap="#rps.getResult()">
+                            <PICTURE width="100%" height="100%" loadingmask="imgloadingmask">
+                                <source src="img/scissors.png" orientation="portrait"/>
+                                <source src="img/scissors.png" orientation="landscape"/>
+                            </PICTURE>
+                        </view>
+                        <view id="gameviewresultwin" width="100%" height="100%" top="0" left="0" display="none" ontap="#rps.startOver()">
+                            <PICTURE width="100%" height="100%" loadingmask="imgloadingmask">
+                                <source src="img/win.png" orientation="portrait"/>
+                                <source src="img/win.png" orientation="landscape"/>
+                            </PICTURE>
+                        </view>
+                        <view id="gameviewresultlose" width="100%" height="100%" top="0" left="0" display="none" ontap="#rps.startOver()">
+                            <PICTURE width="100%" height="100%" loadingmask="imgloadingmask">
+                                <source src="img/lose.png" orientation="portrait"/>
+                                <source src="img/lose.png" orientation="landscape"/>
+                            </PICTURE>
+                        </view>
+                        <view id="gameviewresulttie" width="100%" height="100%" top="0" left="0" display="none" ontap="#rps.startOver()">
+                            <PICTURE width="100%" height="100%" loadingmask="imgloadingmask">
+                                <source src="img/tie.png" orientation="portrait"/>
+                                <source src="img/tie.png" orientation="landscape"/>
+                            </PICTURE>
+                        </view>
+                    </layout>
+                    <layout id="gamebuttons" width="100%" height="18%" top="Math.round(parent.height*.82)">
+                        <layout id="gamebutton0" width="25%" height="95%" top="0" left="Math.round(parent.width*.05)">
+                            <view id="gamebutton0view" class="movebutton" width="100%" height="100%" top="0" left="0" ontap="#rps.playRound(0)">
+                                <PLAINHTML>Rock</PLAINHTML>
+                            </view>
+                        </layout>
+                        <layout id="gamebutton1" width="25%" height="95%" top="0" left="Math.round(parent.width*.38)">
+                            <view id="gamebutton1view" class="movebutton" width="100%" height="100%" top="0" left="0" ontap="#rps.playRound(1)">
+                                <PLAINHTML>Paper</PLAINHTML>
+                            </view>
+                        </layout>
+                        <layout id="gamebutton2" width="25%" height="95%" top="0" left="Math.round(parent.width*.7)">
+                            <view id="gamebutton2view" class="movebutton" width="100%" height="100%" top="0" left="0" ontap="#rps.playRound(2)">
+                                <PLAINHTML>Scissors</PLAINHTML>
+                            </view>
+                        </layout>
+                        <layout id="buttonlock" width="parent.width" height="parent.height" top="0" left="0" zindex="100" display="none">
+                        </layout>
+                    </layout>
+                </layout>
+            </layout>
+            <layout id="footer" class="footer" width="parent.width" top="Math.round(parent.height*.9)" left="0" height="10%">
+            </layout>
+        </layout>
+    </layout>
+</page>

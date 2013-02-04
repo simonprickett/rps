@@ -1,0 +1,47 @@
+.root {
+    background-color: #9999ff;
+}
+
+.header {
+    background-color: #000000;
+    color: #ffffff;
+}
+
+.border {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.content {
+    background-color: #ffffff;
+}
+
+.imgloadingmask {
+    background-color:#ffffff;
+    background-image: url('img/ajaxloader.gif');
+    background-repeat:no-repeat;
+    background-position:center;
+}
+
+.instructions {
+    padding: 5px;
+}
+
+.movebutton {
+    border-radius: 10px;
+    background-color: #cccccc;
+    color: #000000;
+}
+
+.movebuttonselected {
+    background-color: #ff6633;
+    color: #ffffff;
+}
+
+.footer {
+    background-color: #000000;
+    color: #ffffff;
+}
+
